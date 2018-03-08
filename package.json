@@ -1,0 +1,22 @@
+{
+  "name": "clx-page",
+  "version": "1.0.0",
+  "description": "CLX Landing Page",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/livier92/clx-page.git"
+  },
+  "author": "Livier Hernandez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/livier92/clx-page/issues"
+  },
+  "homepage": "https://github.com/livier92/clx-page#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
