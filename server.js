@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var adminRoutes = require('./routes/admin');
+var loginRoutes = require('./routes/login');
 
 // send our index.html file to the user for the home page
 app.get('/', function(req, res) {
@@ -11,6 +12,7 @@ app.get('/', function(req, res) {
 
 // apply the routes to our application
 app.use('/admin', adminRoutes);
+app.use('/login', loginRoutes);
 
 // start the server
 app.listen(3000);
