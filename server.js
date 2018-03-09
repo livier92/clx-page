@@ -8,6 +8,13 @@ var bodyParser = require('body-parser'); // get body-parser
 var morgan = require('morgan'); // used to see requests
 var mongoose = require('mongoose'); // for working w/ our database
 var port = process.env.PORT || 3000; // set the port for our app
+var User = require('./app/models/user');
+
+// connect to our database (hosted on mongoLab)
+mongoose.connect('mongodb://localhost:27017/db_name');
+mongoose.Promise = global.Promise;
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 // APP CONFIGURATION ---------------------
 // use body parser so we can grab information from POST requests
@@ -18,7 +25,7 @@ app.use(bodyParser.json());
 app.use(function(req, res, next) {
 	res.setHeader('Access-Control-Allow-Origin', '*');
 	res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, \Authorization');
+	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
 	next();
 });
 
