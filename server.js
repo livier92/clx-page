@@ -9,6 +9,7 @@ var morgan = require('morgan'); // used to see requests
 var mongoose = require('mongoose'); // for working w/ our database
 var port = process.env.PORT || 3000; // set the port for our app
 var User = require('./app/models/user');
+var apiRoutes = require('./routes/api');
 
 // connect to our database (hosted on mongoLab)
 mongoose.connect('mongodb://localhost:27017/db_name');
@@ -32,28 +33,14 @@ app.use(function(req, res, next) {
 // log all requests to the console
 app.use(morgan('dev'));
 
-// ROUTES FOR OUR API
-// =============================
-
 // basic route for the home page
 app.get('/', function(req, res) {
 	res.send('Welcome to the home page!');
 });
 
-// get an instance of the express router
-var apiRouter = express.Router();
-
-// test route to make sure everything is working
-// accessed at GET http://localhost:8080/api
-apiRouter.get('/', function(req, res) {
-	res.json({ message: 'hooray! welcome to our api!' });
-});
-
-// more routes for our API will happen here
-
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
- app.use('/api', apiRouter);
+ app.use('/api', apiRoutes);
 
 // START THE SERVER
 // ===============================
