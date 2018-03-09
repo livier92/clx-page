@@ -9,7 +9,7 @@ Landing Page CLX
 npm install
 ```
 
-3. Go to the terminal and run:
+2. Go to the terminal and run:
 
 ```
 nodemon server.js

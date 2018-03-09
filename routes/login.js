@@ -5,7 +5,7 @@ var path = require('path');
 var loginRouter = express.Router();
 
 loginRouter.use(function(req, res, next) {
-	console.log(req.method, req.url);
+	console.log(req.method, 'login' + req.url);
 	next();
 });
 
