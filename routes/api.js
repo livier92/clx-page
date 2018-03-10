@@ -3,12 +3,61 @@ var app = express();
 var path = require('path');
 var bodyParser = require('body-parser'); // get body-parser
 var User = require('../app/models/user');
+var jwt = require('jsonwebtoken');
+
+var superSecret = 'ilovescotchscotchyscotchscotch';
 
 // ROUTES FOR OUR API
 // =============================
 
 // get an instance of the express router
 var apiRouter = express.Router();
+
+// route for authenticating users
+apiRouter.post('/authenticate', function(req, res) {
+	// find the user
+	// select the name username and password explicitly
+	User.findOne({
+		username: req.body.username
+	}).select('name username password').exec(function(err, user) {
+		if(err) {
+			throw err;
+		}
+
+		// no user with the username was found
+		if(!user) {
+			res.json({
+				success: false,
+				message: 'Authentication failed. User not found'
+			});
+		} else if(user) {
+			// check if password matches
+			var validPassword = user.comparePassword(req.body.password);
+			if(!validPassword) {
+				res.json({
+					success: false,
+					message: 'Authentication failed. Wrong password'
+				});
+			} else {
+				// if user is found and password is right
+				// create a token
+				var token = jwt.sign({
+					name: user.name,
+					username: user.username
+				}, superSecret, {
+					expiresIn: '24h' // expires in 24 hours
+				});
+
+				// return the information including token as JSON
+				res.json({
+					success: true,
+					message: 'Enjoy your token',
+					token: token
+				});
+			} 
+		}
+	});
+});
 
 // middleware to use for all requests
 apiRouter.use(function(req, res, next) {
