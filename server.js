@@ -8,6 +8,7 @@ var bodyParser = require('body-parser'); // get body-parser
 var morgan = require('morgan'); // used to see requests
 var mongoose = require('mongoose'); // for working w/ our database
 var config = require('./config');
+var path = require('path');
 
 // APP CONFIGURATION ---------------------
 // use body parser so we can grab information from POST requests
