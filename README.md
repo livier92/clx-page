@@ -1,7 +1,7 @@
-# clx-page
-Landing Page CLX
+# mean-machine
+Mean Machine practice
 
-##To run the project
+## To run the project
 
 1. Clone the repo, go to the directory and run
 
