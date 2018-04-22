@@ -14,7 +14,7 @@ angular.module('mainCtrl', [])
 		// get user information on route change
 		Auth.getUser()
 			.then(function(data) {
-				vm.user = data;
+				vm.user = data.data;
 			});
 	});
 
